@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Estefy - Data Scientist Portfolio",
+    "section": "",
+    "text": "Welcome to my portfolio! I am a data scientist with experience in healthcare analytics, machine learning, and data visualization. My goal is to leverage data to improve decision-making and create impactful solutions."
+  },
+  {
+    "objectID": "index.html#pioneerrx-projects",
+    "href": "index.html#pioneerrx-projects",
+    "title": "Estefy - Data Scientist Portfolio",
+    "section": "PioneerRx Projects",
+    "text": "PioneerRx Projects\n\nSupport Issue Classification\n\nProblem: Manual support request routing was inefficient and labor-intensive.\n\nSolution: Developed a machine learning system (LightGBM, logistic regression, random forest) with 94% accuracy to classify user requests. Integrated the model into SQL Server for automated routing.\n\nImpact: Reduced human involvement by 74%, saving 300+ labor hours per month and improving customer resolution times.\n\n\n\n\nPrescription Directions Parser\n\nProblem: Manual processing of prescription directions slowed workflows.\n\nSolution: Built Python RegEx logic to extract key prescription details like dose, frequency, and duration.\n\nImpact: Enabled automated days’ supply calculations and dose safety alerts, reducing manual errors and improving pharmacist workflows.\n\n\n\n\nHOA Interpretation for Long-Term Care Facilities\n\nProblem: Long-term care pharmacies needed precise medication administration records.\n\nSolution: Developed a two-step method using Python RegEx and historical facility preferences to predict Hours of Administration (HOA).\n\nImpact: Standardized records, reduced manual entry, and ensured facility-specific compliance.\n\n\n\n\nMedical Terminology Code Matching\n\nProblem: Manual matching of medical terminology codes (SNOMED, ICD-10) was time-consuming.\n\nSolution: Used word mover’s distance (Gensim) and fastText embeddings in Python to automate matching and SQL integration.\n\nImpact: Streamlined workflows with pre-ranked code suggestions, reducing errors.\n\n\n\n\nClinical Programs Data Cleaning and Analysis\n\nProblem: Analyzing 20+ clinical programs to measure medication adherence required complex data management.\n\nSolution: Designed SQL processes to clean, validate, and analyze 1M+ patient records. Used Python (SciPy, Statsmodels) for statistical analysis.\n\nImpact: Improved data quality, automated reimbursement validation, and identified adherence improvements.\n\n\n\n\nFinding Medication Adherence Factors\n\nProblem: Lack of control groups made adherence analysis inconclusive.\n\nSolution: Used random forest models to identify key confounders and feature importance for accurate analysis.\n\nImpact: Revealed critical factors influencing adherence and refined evaluation strategies.\n\n\n\n\nRxReady and MedSync Analysis\n\nProblem: Evaluating the impact of MedSync and refill reminders on pharmacy profitability.\n\nSolution: Built mixed-effects models in Python to quantify feature impact while controlling for confounding factors.\n\nImpact: Provided actionable equations for sales teams to promote profit gains to pharmacies.\n\n\n\n\nPharmacy Desert Analysis\n\nProblem: Evaluate the impact of community pharmacies on pharmacy deserts in the US\nSolution: Conducted geospatial analysis using Python (geopandas) and census data to identify pharmacy deserts. Compare socioeconomic status of neighborhoods served by community vs. chain pharmacies using the Area Deprivation Index (ADI).\nImpact: Identified 69 million people living in pharmacy deserts, with an additional 28 million at risk if community pharmacies were removed. Highlighted the critical role of community pharmacies in serving socioeconomically disadvantaged areas, emphasizing their importance in addressing healthcare inequities."
+  },
+  {
+    "objectID": "index.html#github-projects",
+    "href": "index.html#github-projects",
+    "title": "Estefy - Data Scientist Portfolio",
+    "section": "GitHub Projects",
+    "text": "GitHub Projects\n\nPredicting Heart Disease\n\nDescription: The task is to predict whether a subject has heart disease based on 13 attributes using data from the “Heart Disease Data Set”.\n\nTechnologies: Python, K Nearest Neighbors Classifier, Logistic Regression, Random Forest Classifier.\n\nHighlights: Implemented multiple classification models and analyzed feature importance to determine key predictors of heart disease.\n\nDataset Size: 303 observations, each representing a patient."
+  }
+]
