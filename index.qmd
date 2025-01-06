@@ -1,14 +1,14 @@
 ---
-title: "Estefy - Data Scientist Portfolio"
+title: "Estefy Fiallos"
 ---
 
-# Hi, I'm Estefy 👋
+# About Me
 
 Welcome to my portfolio! I am a **data scientist** with experience in healthcare analytics, machine learning, and data visualization. My goal is to leverage data to improve decision-making and create impactful solutions.
 
 ---
 
-# Work Projects (Non-Public)
+# Work Projects
 
 ---
 
@@ -71,10 +71,10 @@ Welcome to my portfolio! I am a **data scientist** with experience in healthcare
 
 ---
 
-## GitHub Projects
+# Personal Projects
 
-### [Predicting Heart Disease](https://github.com/estefyfb/Predicting-Heart-Disease)
-- **Description:** The task is to predict whether a subject has heart disease based on 13 attributes using data from the ["Heart Disease Data Set"](https://archive.ics.uci.edu/ml/datasets/Heart+Disease).  
+## Predicting Heart Disease [github](https://github.com/estefyfb/Predicting-Heart-Disease)
+- **Description:** The task is to predict whether a subject has heart disease based on 13 attributes using data from the [Heart Disease Data Set](https://archive.ics.uci.edu/ml/datasets/Heart+Disease).  
 - **Technologies:** Python, K Nearest Neighbors Classifier, Logistic Regression, Random Forest Classifier.  
 - **Highlights:** Implemented multiple classification models and analyzed feature importance to determine key predictors of heart disease.  
 - **Dataset Size:** 303 observations, each representing a patient.
