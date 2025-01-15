@@ -30,10 +30,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -66,7 +67,66 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-project-grid .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-title','listing-subtitle','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-project-grid'] = new List('listing-project-grid', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +142,6 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Estefy Fiallos</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -96,6 +155,17 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-more" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">More</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-more">    
+        <li>
+    <a class="dropdown-item" href="./about.html">
+ <span class="dropdown-text">About</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -104,173 +174,338 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a></li>
-  <li><a href="#work-projects" id="toc-work-projects" class="nav-link" data-scroll-target="#work-projects">Work Projects</a>
-  <ul class="collapse">
-  <li><a href="#pioneerrx-projects" id="toc-pioneerrx-projects" class="nav-link" data-scroll-target="#pioneerrx-projects">PioneerRx Projects</a>
-  <ul class="collapse">
-  <li><a href="#support-issue-classification" id="toc-support-issue-classification" class="nav-link" data-scroll-target="#support-issue-classification">Support Issue Classification</a></li>
-  <li><a href="#prescription-directions-parser" id="toc-prescription-directions-parser" class="nav-link" data-scroll-target="#prescription-directions-parser">Prescription Directions Parser</a></li>
-  <li><a href="#hoa-interpretation-for-long-term-care-facilities" id="toc-hoa-interpretation-for-long-term-care-facilities" class="nav-link" data-scroll-target="#hoa-interpretation-for-long-term-care-facilities">HOA Interpretation for Long-Term Care Facilities</a></li>
-  <li><a href="#medical-terminology-code-matching" id="toc-medical-terminology-code-matching" class="nav-link" data-scroll-target="#medical-terminology-code-matching">Medical Terminology Code Matching</a></li>
-  <li><a href="#clinical-programs-data-cleaning-and-analysis" id="toc-clinical-programs-data-cleaning-and-analysis" class="nav-link" data-scroll-target="#clinical-programs-data-cleaning-and-analysis">Clinical Programs Data Cleaning and Analysis</a></li>
-  <li><a href="#finding-medication-adherence-factors" id="toc-finding-medication-adherence-factors" class="nav-link" data-scroll-target="#finding-medication-adherence-factors">Finding Medication Adherence Factors</a></li>
-  <li><a href="#rxready-and-medsync-analysis" id="toc-rxready-and-medsync-analysis" class="nav-link" data-scroll-target="#rxready-and-medsync-analysis">RxReady and MedSync Analysis</a></li>
-  <li><a href="#pharmacy-desert-analysis" id="toc-pharmacy-desert-analysis" class="nav-link" data-scroll-target="#pharmacy-desert-analysis">Pharmacy Desert Analysis</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#personal-projects" id="toc-personal-projects" class="nav-link" data-scroll-target="#personal-projects">Personal Projects</a>
-  <ul class="collapse">
-  <li><a href="#predicting-heart-disease-github" id="toc-predicting-heart-disease-github" class="nav-link" data-scroll-target="#predicting-heart-disease-github">Predicting Heart Disease github</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
+
+
+
+<div class="quarto-about-trestles column-page">
+  <div class="about-entity">
+    <img src="profile-pic.jpg" class="about-image
+  rounded " style="width: 15em;">
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Estefy Fiallos</h1>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
+<div class="quarto-title-meta column-page">
   </div>
-  
-
-
 </header>
+    <div class="about-links">
+  <a href="https://www.linkedin.com/in/estefy-fiallos/" class="about-link" rel="" target="">
+    <i class="bi bi-linkedin"></i>
+     <span class="about-link-text">LinkedIn</span>
+  </a>
+  <a href="https://github.com/estefyfb" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">Github</span>
+  </a>
+</div>
+  </div>
+  <div class="about-contents"><div id="hero-heading">
+<section id="about-me" class="level2">
+<h2 data-anchor-id="about-me">About Me</h2>
+<p>Hi, I’m Estefy, a <strong>data scientist</strong> passionate about healthcare and making a meaningful impact. After earning my degree in molecular biology &amp; neuroscience from Princeton, I worked in a lab researching glioblastoma, one of the most aggressive brain cancers. This hands-on experience, paired with 2.5 years in medical school, provided me with valuable insights into the challenges and opportunities within healthcare.</p>
+<p>Recognizing the transformative potential of data and technology, I transitioned into data science to address some of healthcare’s most pressing problems. Over the past four years, I’ve contributed to projects such as pharmacy management systems and tools designed to enhance patient outcomes. I thrive on uncovering insights, developing impactful models, and crafting innovative solutions to improve healthcare systems.</p>
+<p>Outside work, I enjoy decorating and painting, which allow me to explore creativity and self-expression. I also have a deep love for books that challenge my thinking and offer fresh perspectives, particularly science fiction and fantasy. Their imaginative worlds and thought-provoking themes inspire my curiosity and help me approach problems with new perspectives.</p>
+<p>I’d love to collaborate and contribute to driving positive change in the healthcare industry!</p>
+</section>
+<section id="education" class="level2">
+<h2 data-anchor-id="education">Education</h2>
+<div class="line-block">Southern Methodist University (2019)<br>
+<strong>MS in Applied Statistics &amp; Data Analytics</strong><br>
+<br>
+Northwestern University Feinberg School of Medicine (2014-2017)<br>
+<strong>MD Candidate</strong> (Full-Tuition Scholarship Recipient)<br>
+<br>
+Princeton University (2012)<br>
+<strong>BA in Molecular Biology &amp; Neuroscience</strong></div>
+</section>
+</div></div>
+</div>
+
+<hr>
+<section id="projects" class="level1">
+<h1>Projects</h1>
+<div id="listing-project-grid" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="V29yayUyMFByb2plY3QlMkNEYXRhJTIwQW5hbHlzaXMlMkNEYXRhJTIwV3JhbmdsaW5nJTJDRGF0YSUyMENsZWFuaW5n" data-listing-file-modified-sort="1736808386631" data-listing-reading-time-sort="1" data-listing-word-count-sort="50">
+<a href="./projects/clinical-programs-data-analytics.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/pharmacist-patient2.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title" data-anchor-id="projects">
+Analysis of Medication Adherence Interventions
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMEFuYWx5c2lz'); return false;">
+Data Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMFdyYW5nbGluZw=='); return false;">
+Data Wrangling
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMENsZWFuaW5n'); return false;">
+Data Cleaning
+</div>
+</div>
+<div class="card-text listing-description">
+Data management and effectiveness analysis of 20+ clinical programs aimed at enhancing medication adherence among pharmacy patients.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="V29yayUyMFByb2plY3QlMkNOTFA=" data-listing-file-modified-sort="1736808338955" data-listing-reading-time-sort="1" data-listing-word-count-sort="47">
+<a href="./projects/hoa-parser.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/mar2.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Hours of Administration Parser
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TkxQ'); return false;">
+NLP
+</div>
+</div>
+<div class="card-text listing-description">
+Created a method to predict medication administration times for long-term care facilities, streamlining MARs documentation.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="V29yayUyMFByb2plY3QlMkNTdGF0aXN0aWNhbCUyMEFuYWx5c2lz" data-listing-file-modified-sort="1736808317966" data-listing-reading-time-sort="1" data-listing-word-count-sort="47">
+<a href="./projects/rxready-medsync-analysis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/rxready-medsync.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Impact of MedSync and Refill Reminders on Pharmacy Profit
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGljYWwlMjBBbmFseXNpcw=='); return false;">
+Statistical Analysis
+</div>
+</div>
+<div class="card-text listing-description">
+Measured the profit contribution of two pharmacy software features (MedSync and refill reminders) using mixed effects models.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="V29yayUyMFByb2plY3QlMkNFREElMkNDbGFzc2lmaWNhdGlvbg==" data-listing-file-modified-sort="1736808336681" data-listing-reading-time-sort="1" data-listing-word-count-sort="41">
+<a href="./projects/medication-adherence-factors.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/med-adherence.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Novel Method to Identify Medication Adherence Factors
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">
+EDA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xhc3NpZmljYXRpb24='); return false;">
+Classification
+</div>
+</div>
+<div class="card-text listing-description">
+Designed a novel framework to identify critical drivers of medication adherence through random forest analysis.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="UGVyc29uYWwlMjBQcm9qZWN0JTJDQ2xhc3NpZmljYXRpb24=">
+<a href="https://github.com/estefyfb/Predicting-Heart-Disease" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="projects/project-images/heart-disease.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Predicting Heart Disease
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UGVyc29uYWwlMjBQcm9qZWN0'); return false;">
+Personal Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xhc3NpZmljYXRpb24='); return false;">
+Classification
+</div>
+</div>
+<div class="card-text listing-description">
+Predict whether a subject has heart disease based on 13 attributes
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="V29yayUyMFByb2plY3QlMkNDbGFzc2lmaWNhdGlvbg==" data-listing-file-modified-sort="1736615806553" data-listing-reading-time-sort="1" data-listing-word-count-sort="44">
+<a href="./projects/medical-code-mapping.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/snomed-icd10-map.jpg" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+SNOMED/FDB to ICD10 Medical Code Mapping
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xhc3NpZmljYXRpb24='); return false;">
+Classification
+</div>
+</div>
+<div class="card-text listing-description">
+Developed a solution to automate the matching of medical terminology codes (SNOMED and FDB) to ICD-10 codes.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="V29yayUyMFByb2plY3QlMkNDbGFzc2lmaWNhdGlvbg==" data-listing-file-modified-sort="1736807369451" data-listing-reading-time-sort="1" data-listing-word-count-sort="60">
+<a href="./projects/support-issue.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/customer-support.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Support Request Classification
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q2xhc3NpZmljYXRpb24='); return false;">
+Classification
+</div>
+</div>
+<div class="card-text listing-description">
+Created a machine learning system to automate user support request routing, saving 300+ hours/month with 94% accuracy.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="V29yayUyMFByb2plY3QlMkNHZW9zcGF0aWFsJTIwQW5hbHlzaXMlMkNEYXRhJTIwQW5hbHlzaXMlMkNFREE=" data-listing-file-modified-sort="1736808964424" data-listing-reading-time-sort="1" data-listing-word-count-sort="91">
+<a href="./projects/pharmacy-deserts.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/pharmacy-deserts.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+US Pharmacy Deserts &amp; Community Pharmacies
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2Vvc3BhdGlhbCUyMEFuYWx5c2lz'); return false;">
+Geospatial Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RGF0YSUyMEFuYWx5c2lz'); return false;">
+Data Analysis
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">
+EDA
+</div>
+</div>
+<div class="card-text listing-description">
+Mapped U.S. pharmacy deserts via geospatial analysis, highlighting community pharmacies’ role in access equity.
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="V29yayUyMFByb2plY3QlMkNOTFA=" data-listing-file-modified-sort="1736807328486" data-listing-reading-time-sort="1" data-listing-word-count-sort="47">
+<a href="./projects/escript-directions.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./projects/project-images/eRx.webp" class="thumbnail-image card-img" style="height: auto;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+eScript Directions Parser
+</h5>
+<div class="card-subtitle listing-subtitle">
+Work <span class="citation" data-cites="PioneerRx">@PioneerRx</span> Pharmacy Systems
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('V29yayUyMFByb2plY3Q='); return false;">
+Work Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('TkxQ'); return false;">
+NLP
+</div>
+</div>
+<div class="card-text listing-description">
+Developed RegEx in Python to identify key text elements in eScript prescription directions.
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 
 
-<section id="about-me" class="level1">
-<h1>About Me</h1>
-<p>Welcome to my portfolio! I am a <strong>data scientist</strong> with experience in healthcare analytics, machine learning, and data visualization. My goal is to leverage data to improve decision-making and create impactful solutions.</p>
-<hr>
-</section>
-<section id="work-projects" class="level1">
-<h1>Work Projects</h1>
-<hr>
-<section id="pioneerrx-projects" class="level2">
-<h2 class="anchored" data-anchor-id="pioneerrx-projects">PioneerRx Projects</h2>
-<section id="support-issue-classification" class="level3">
-<h3 class="anchored" data-anchor-id="support-issue-classification">Support Issue Classification</h3>
-<ul>
-<li><strong>Problem:</strong> Manual support request routing was inefficient and labor-intensive.<br>
-</li>
-<li><strong>Solution:</strong> Developed a machine learning system (LightGBM, logistic regression, random forest) with 94% accuracy to classify user requests. Integrated the model into SQL Server for automated routing.<br>
-</li>
-<li><strong>Impact:</strong> Reduced human involvement by 74%, saving 300+ labor hours per month and improving customer resolution times.</li>
-</ul>
-<hr>
-</section>
-<section id="prescription-directions-parser" class="level3">
-<h3 class="anchored" data-anchor-id="prescription-directions-parser">Prescription Directions Parser</h3>
-<ul>
-<li><strong>Problem:</strong> Manual processing of prescription directions slowed workflows.<br>
-</li>
-<li><strong>Solution:</strong> Built Python RegEx logic to extract key prescription details like dose, frequency, and duration.<br>
-</li>
-<li><strong>Impact:</strong> Enabled automated days’ supply calculations and dose safety alerts, reducing manual errors and improving pharmacist workflows.</li>
-</ul>
-<hr>
-</section>
-<section id="hoa-interpretation-for-long-term-care-facilities" class="level3">
-<h3 class="anchored" data-anchor-id="hoa-interpretation-for-long-term-care-facilities">HOA Interpretation for Long-Term Care Facilities</h3>
-<ul>
-<li><strong>Problem:</strong> Long-term care pharmacies needed precise medication administration records.<br>
-</li>
-<li><strong>Solution:</strong> Developed a two-step method using Python RegEx and historical facility preferences to predict Hours of Administration (HOA).<br>
-</li>
-<li><strong>Impact:</strong> Standardized records, reduced manual entry, and ensured facility-specific compliance.</li>
-</ul>
-<hr>
-</section>
-<section id="medical-terminology-code-matching" class="level3">
-<h3 class="anchored" data-anchor-id="medical-terminology-code-matching">Medical Terminology Code Matching</h3>
-<ul>
-<li><strong>Problem:</strong> Manual matching of medical terminology codes (SNOMED, ICD-10) was time-consuming.<br>
-</li>
-<li><strong>Solution:</strong> Used word mover’s distance (Gensim) and fastText embeddings in Python to automate matching and SQL integration.<br>
-</li>
-<li><strong>Impact:</strong> Streamlined workflows with pre-ranked code suggestions, reducing errors.</li>
-</ul>
-<hr>
-</section>
-<section id="clinical-programs-data-cleaning-and-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="clinical-programs-data-cleaning-and-analysis">Clinical Programs Data Cleaning and Analysis</h3>
-<ul>
-<li><strong>Problem:</strong> Analyzing 20+ clinical programs to measure medication adherence required complex data management.<br>
-</li>
-<li><strong>Solution:</strong> Designed SQL processes to clean, validate, and analyze 1M+ patient records. Used Python (SciPy, Statsmodels) for statistical analysis.<br>
-</li>
-<li><strong>Impact:</strong> Improved data quality, automated reimbursement validation, and identified adherence improvements.</li>
-</ul>
-<hr>
-</section>
-<section id="finding-medication-adherence-factors" class="level3">
-<h3 class="anchored" data-anchor-id="finding-medication-adherence-factors">Finding Medication Adherence Factors</h3>
-<ul>
-<li><strong>Problem:</strong> Lack of control groups made adherence analysis inconclusive.<br>
-</li>
-<li><strong>Solution:</strong> Used random forest models to identify key confounders and feature importance for accurate analysis.<br>
-</li>
-<li><strong>Impact:</strong> Revealed critical factors influencing adherence and refined evaluation strategies.</li>
-</ul>
-<hr>
-</section>
-<section id="rxready-and-medsync-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="rxready-and-medsync-analysis">RxReady and MedSync Analysis</h3>
-<ul>
-<li><strong>Problem:</strong> Evaluating the impact of MedSync and refill reminders on pharmacy profitability.<br>
-</li>
-<li><strong>Solution:</strong> Built mixed-effects models in Python to quantify feature impact while controlling for confounding factors.<br>
-</li>
-<li><strong>Impact:</strong> Provided actionable equations for sales teams to promote profit gains to pharmacies.</li>
-</ul>
-<hr>
-</section>
-<section id="pharmacy-desert-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="pharmacy-desert-analysis">Pharmacy Desert Analysis</h3>
-<ul>
-<li><strong>Problem:</strong> Evaluate the impact of community pharmacies on pharmacy deserts in the US</li>
-<li><strong>Solution:</strong> Conducted geospatial analysis using Python (geopandas) and census data to identify pharmacy deserts. Compare socioeconomic status of neighborhoods served by community vs.&nbsp;chain pharmacies using the Area Deprivation Index (ADI).</li>
-<li><strong>Impact:</strong> Identified 69 million people living in pharmacy deserts, with an additional 28 million at risk if community pharmacies were removed. Highlighted the critical role of community pharmacies in serving socioeconomically disadvantaged areas, emphasizing their importance in addressing healthcare inequities.</li>
-</ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="personal-projects" class="level1">
-<h1>Personal Projects</h1>
-<section id="predicting-heart-disease-github" class="level2">
-<h2 class="anchored" data-anchor-id="predicting-heart-disease-github">Predicting Heart Disease <a href="https://github.com/estefyfb/Predicting-Heart-Disease">github</a></h2>
-<ul>
-<li><strong>Description:</strong> The task is to predict whether a subject has heart disease based on 13 attributes using data from the <a href="https://archive.ics.uci.edu/ml/datasets/Heart+Disease">Heart Disease Data Set</a>.<br>
-</li>
-<li><strong>Technologies:</strong> Python, K Nearest Neighbors Classifier, Logistic Regression, Random Forest Classifier.<br>
-</li>
-<li><strong>Highlights:</strong> Implemented multiple classification models and analyzed feature importance to determine key predictors of heart disease.<br>
-</li>
-<li><strong>Dataset Size:</strong> 303 observations, each representing a patient.</li>
-</ul>
-<hr>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -294,13 +529,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -696,4 +924,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
